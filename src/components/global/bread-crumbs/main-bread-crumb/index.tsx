@@ -1,11 +1,11 @@
 import { PAGE_ICON } from '@/constants/pages'
 import React from 'react'
 
+
 type Props = {
   page: string
   slug?: string
 }
-
 const MainBreadCrumb = ({ page, slug }: Props) => {
   return (
     <div className="flex flex-col items-start">

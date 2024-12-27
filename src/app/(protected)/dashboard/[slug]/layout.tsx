@@ -1,7 +1,7 @@
 import {dehydrate, HydrationBoundary, QueryClient} from "@tanstack/react-query"
 import InfoBar from "@/components/global/inforbar/page";
 import Sidebar from "@/components/global/sidebar"
-import { PrefetchUserAutomations, PrefetchUserProfile } from "@/react-query/prefetch";
+import { PrefetchUserAutnomations, PrefetchUserProfile } from "@/react-query/prefetch";
 
 type Props = {
     children: React.ReactNode;
@@ -10,9 +10,10 @@ type Props = {
   
 
   const Layout = async ({ children, params }: Props) => {
+    const slug = await Promise.resolve(params.slug)
      const query = new QueryClient()
      await PrefetchUserProfile(query)
-     await PrefetchUserAutomations(query)
+     await PrefetchUserAutnomations(query)
     return (
       <HydrationBoundary state={dehydrate(query)}>
         <div className="flex h-full">
