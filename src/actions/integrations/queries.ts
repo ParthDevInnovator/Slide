@@ -1,39 +1,58 @@
-"use server";
+'use server'
 
-import { client } from "@/lib/prisma";
+import { client } from '@/lib/prisma'
 
 export const updateIntegration = async (
-  token: String,
+  token: string,
   expire: Date,
-  id: String
+  id: string
 ) => {
   return await client.integrations.update({
-    where: { id: id as string },
+    where: { id },
     data: {
-      token: token as string,
+      token,
       expiresAt: expire,
     },
-  });
-};
-export const createUser = async(
-  clerkId: String,
-  firstname: string,
-  lastname: String,
-  email: String
+  })
+}
+
+export const getIntegration = async (clerkId: string) => {
+  return await client.user.findUnique({
+    where: {
+      clerkId,
+    },
+    select: {
+      integrations: {
+        where: {
+          name: 'INSTAGRAM',
+        },
+      },
+    },
+  })
+}
+
+export const createIntegration = async (
+  clerkId: string,
+  token: string,
+  expire: Date,
+  igId?: string
 ) => {
-  return await client.user.create({
+  return await client.user.update({
+    where: {
+      clerkId,
+    },
     data: {
-      clerkId: clerkId as string,
-      firstname: firstname as string,
-      lastname: lastname as string,
-      email: email as string,
-      subscription:{
-        create:{},
-      }
+      integrations: {
+        create: {
+          token,
+          expiresAt: expire,
+          instagramId: igId,
+        },
+      },
     },
-    select:{
-        firstname:true,
-        lastname:true,
+    select: {
+      firstname: true,
+      lastname: true,
     },
-  });
-};
+  })
+}

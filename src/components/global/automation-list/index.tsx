@@ -7,8 +7,9 @@ import GradientButton from '../gradient-button'
 import { Button } from '@/components/ui/button'
 import { useQueryAutomations } from '@/hooks/user-queries'
 import CreateAutomation from '../create-automation'
-import { useMutationDataState } from '@/hooks/use-mutation'
-  
+import { useMutationDataState } from '@/hooks/use-mutation-data'
+
+
 type Props = {}
 
 const AutomationList = (props: Props) => {

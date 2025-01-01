@@ -4,9 +4,9 @@ import React from 'react'
 import ActivateAutomationButton from '../../activate-automation-button'
 import { useQueryAutomation } from '@/hooks/user-queries'
 import { useEditAutomation } from '@/hooks/use-automations'
-
 import { Input } from '@/components/ui/input'
-import { useMutationDataState } from '@/hooks/use-mutation'
+import { useMutationDataState } from '@/hooks/use-mutation-data';
+
 
 type Props = {
   id: string
